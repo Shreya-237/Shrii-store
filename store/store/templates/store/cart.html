@@ -1,0 +1,284 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Shopping Cart - Shrii Store{% endblock %}
+
+{% block content %}
+
+<style>
+    .cart-page {
+        padding: 50px 6%;
+    }
+
+    .cart-page h1 {
+        text-align: center;
+        margin-bottom: 35px;
+        font-size: 36px;
+        color: #222;
+    }
+
+    .cart-container {
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    .cart-item {
+        background: white;
+        padding: 20px;
+        margin-bottom: 15px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+    }
+
+    .cart-item img {
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+    }
+
+    .item-info {
+        flex: 1;
+    }
+
+    .item-info h2 {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .price {
+        color: #555;
+        margin-bottom: 12px;
+    }
+
+    .quantity {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .quantity a {
+        text-decoration: none;
+        background: #eee;
+        color: #222;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .quantity a:hover {
+        background: #ddd;
+    }
+
+    .quantity span {
+        font-weight: bold;
+        min-width: 20px;
+        text-align: center;
+    }
+
+    .subtotal {
+        font-weight: bold;
+        font-size: 18px;
+        min-width: 120px;
+        text-align: right;
+    }
+
+    .remove {
+        color: #d00;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .remove:hover {
+        text-decoration: underline;
+    }
+
+    .cart-summary {
+        background: white;
+        padding: 25px;
+        margin-top: 25px;
+        border-radius: 12px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+        text-align: right;
+    }
+
+    .cart-summary h2 {
+        margin-bottom: 20px;
+    }
+
+    .checkout-btn,
+    .continue-btn {
+        display: inline-block;
+        padding: 12px 22px;
+        border-radius: 6px;
+        text-decoration: none;
+        margin-left: 10px;
+    }
+
+    .checkout-btn {
+        background: #222;
+        color: white;
+    }
+
+    .continue-btn {
+        background: #eee;
+        color: #222;
+    }
+
+    .checkout-btn:hover {
+        background: #444;
+    }
+
+    .empty-cart {
+        text-align: center;
+        background: white;
+        padding: 50px;
+        border-radius: 12px;
+    }
+
+    .empty-cart a {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 22px;
+        background: #222;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+    }
+
+    @media (max-width: 700px) {
+        .cart-page {
+            padding: 30px 5%;
+        }
+
+        .cart-item {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .subtotal {
+            text-align: center;
+        }
+
+        .cart-summary {
+            text-align: center;
+        }
+
+        .checkout-btn,
+        .continue-btn {
+            margin: 5px;
+        }
+    }
+</style>
+
+
+<div class="cart-page">
+
+    <h1>Shopping Cart</h1>
+
+    <div class="cart-container">
+
+        {% if products %}
+
+            {% for item in products %}
+
+            <div class="cart-item">
+
+                {% if item.product.image %}
+                    <img
+                        src="{{ item.product.image.url }}"
+                        alt="{{ item.product.name }}"
+                    >
+                {% else %}
+                    <p>No Image</p>
+                {% endif %}
+
+
+                <div class="item-info">
+
+                    <h2>{{ item.product.name }}</h2>
+
+                    <p class="price">
+                        ₹{{ item.product.price }}
+                    </p>
+
+                    <div class="quantity">
+
+                        <a href="{% url 'decrease_quantity' item.product.id %}">
+                            −
+                        </a>
+
+                        <span>{{ item.quantity }}</span>
+
+                        <a href="{% url 'increase_quantity' item.product.id %}">
+                            +
+                        </a>
+
+                    </div>
+
+                    <br>
+
+                    <a
+                        href="{% url 'remove_from_cart' item.product.id %}"
+                        class="remove">
+                        Remove
+                    </a>
+
+                </div>
+
+
+                <div class="subtotal">
+                    ₹{{ item.subtotal }}
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+
+            <div class="cart-summary">
+
+                <h2>
+                    Total: ₹{{ total }}
+                </h2>
+
+                <a
+                    href="{% url 'product_list' %}"
+                    class="continue-btn">
+                    Continue Shopping
+                </a>
+
+                <a
+                    href="{% url 'checkout' %}"
+                    class="checkout-btn">
+                    Proceed to Checkout
+                </a>
+
+            </div>
+
+        {% else %}
+
+            <div class="empty-cart">
+
+                <h2>Your cart is empty</h2>
+
+                <p>Add some products to your cart to continue shopping.</p>
+
+                <a href="{% url 'product_list' %}">
+                    Start Shopping
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

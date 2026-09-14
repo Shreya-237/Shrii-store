@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shrii Store - Home</title>
+
+    <style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+       header {
+                background: #1f1f1f;
+                color: white;
+                padding: 18px 6%;
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                font-family: 'Playfair Display', serif;
+                font-size: 34px;
+                font-weight: 700;
+                text-decoration: none;
+            }
+
+            .logo-icon {
+                font-family: Arial, sans-serif;
+                font-size: 34px;
+            }
+
+            .logo-shrii {
+                color: white;
+            }
+
+            .logo-store {
+                color: #f5b52b;
+            }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+        }
+        .hero {
+            width: 100%;
+            height: 520px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero img {
+            width: 100%;
+            display: block;
+            margin-top: -125px;
+        }
+            .hero img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            .shop-now-link {
+                        position: absolute;
+                        left: 4%;
+                        top: 82%;
+                        width: 18%;
+                        height: 12%;
+                        display: block;
+                        cursor: pointer;
+                    }
+
+            .hero img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .shop-btn {
+            background: #000;
+            color: white;
+            padding: 14px 30px;
+
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .shop-btn:hover {
+            background: #444;
+        }
+
+        .features {
+            padding: 50px 8%;
+            text-align: center;
+        }
+
+        .features h2 {
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+
+        .feature-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            background: white;
+            width: 250px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #ddd;
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+
+    <div class="logo">
+        <span class="logo-icon">🛒</span>
+        <span class="logo-shrii">Shrii</span>
+        <span class="logo-store">Store</span>
+    </div>
+
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'product_list' %}">Products</a>
+        <a href="{% url 'cart' %}">Cart</a>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'my_orders' %}">My Orders</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </nav>
+
+</header>
+
+
+
+        <section class="hero">
+
+        <img
+            src="/media/shrii-bnner/shrii-bnner.png"
+            alt="Shrii Store Banner">
+             <a href="{% url 'product_list' %}" class="shop-now-link"></a>
+
+    </section>
+  
+
+
+    <section class="features">
+
+        <h2>Why Shop With Us?</h2>
+
+        <div class="feature-boxes">
+
+            <div class="feature">
+                <h3>🛍️ Quality Products</h3>
+                <p>We provide quality products for our customers.</p>
+            </div>
+
+            <div class="feature">
+                <h3>💰 Best Prices</h3>
+                <p>Get amazing products at affordable prices.</p>
+            </div>
+
+            <div class="feature">
+                <h3>🚚 Easy Shopping</h3>
+                <p>Simple and convenient online shopping experience.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        <p>© 2026 Shrii Store. All Rights Reserved.</p>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,191 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Checkout - Shrii Store{% endblock %}
+
+{% block content %}
+
+{% if error %}
+    <p style="color: red; text-align: center; font-weight: bold;">
+        {{ error }}
+    </p>
+{% endif %}
+
+<!-- Your existing checkout HTML here -->
+
+<style>
+    .checkout-page {
+        padding: 50px 6%;
+    }
+
+    .checkout-page h1 {
+        text-align: center;
+        margin-bottom: 35px;
+        font-size: 36px;
+        color: #222;
+    }
+
+    .checkout-container {
+        max-width: 700px;
+        margin: auto;
+        background: white;
+        padding: 35px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        font-family: Arial, sans-serif;
+    }
+
+    .form-group textarea {
+        height: 100px;
+        resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+        outline: none;
+        border-color: #f5b52b;
+    }
+
+    .place-order-btn {
+        width: 100%;
+        padding: 14px;
+        background: #222;
+        color: white;
+        border: none;
+        border-radius: 7px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .place-order-btn:hover {
+        background: #444;
+    }
+
+    .back-cart {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #222;
+        text-decoration: none;
+    }
+
+    .back-cart:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 700px) {
+        .checkout-page {
+            padding: 30px 5%;
+        }
+
+        .checkout-container {
+            padding: 25px;
+        }
+
+        .checkout-page h1 {
+            font-size: 28px;
+        }
+    }
+</style>
+
+<div class="checkout-page">
+
+    <h1>Checkout</h1>
+
+    <div class="checkout-container">
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="customer_name">Customer Name</label>
+                <input
+                    type="text"
+                    id="customer_name"
+                    name="customer_name"
+                    placeholder="Enter your name"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter your phone number"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <textarea
+                    id="address"
+                    name="address"
+                    placeholder="Enter your complete address"
+                    required
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="payment_method">Payment Method</label>
+
+                <select id="payment_method" name="payment_method" required>
+                    <option value="">Select Payment Method</option>
+                    <option value="Cash on Delivery">Cash on Delivery</option>
+                    <option value="UPI">UPI</option>
+                    <option value="Card">Card</option>
+                </select>
+            </div>
+
+            <button type="submit" class="place-order-btn">
+                Place Order
+            </button>
+
+        </form>
+
+        <a href="{% url 'cart' %}" class="back-cart">
+            ← Back to Cart
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
