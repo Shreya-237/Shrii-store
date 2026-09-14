@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Shrii Store{% endblock %}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        header {
+            background: #1f1f1f;
+            color: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Playfair Display', serif;
+            font-size: 34px;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            font-family: Arial, sans-serif;
+            font-size: 30px;
+        }
+
+        .logo-shrii {
+            color: white;
+        }
+
+        .logo-store {
+            color: #f5b52b;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #f5b52b;
+        }
+
+        /* PAGE CONTENT */
+
+        .content {
+            min-height: calc(100vh - 140px);
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #1f1f1f;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            margin-top: 40px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .logo {
+                font-size: 30px;
+            }
+            .back-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            padding: 0;
+        }
+
+        .back-btn:hover {
+         color: #f5b52b;
+        }
+        }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        <span class="logo-icon">🛒</span>
+        <span class="logo-shrii">Shrii</span>
+        <span class="logo-store">Store</span>
+    </div>
+
+    <nav>
+    <button onclick="history.back()" class="back-btn">← Back</button>
+
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'product_list' %}">Products</a>
+    <a href="{% url 'cart' %}">Cart</a>
+
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'my_orders' %}">My Orders</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">Register</a>
+    {% endif %}
+</nav>
+
+</header>
+
+<div class="content">
+
+    {% block content %}
+
+    {% endblock %}
+
+</div>
+
+<footer>
+
+    <p>© 2026 Shrii Store. All Rights Reserved.</p>
+
+</footer>
+
+</body>
+</html>

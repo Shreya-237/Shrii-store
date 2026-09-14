@@ -1,0 +1,147 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Products - Shrii Store{% endblock %}
+
+{% block content %}
+
+<style>
+    .products-page {
+        padding: 50px 6%;
+    }
+
+    .products-page h1 {
+        text-align: center;
+        margin-bottom: 35px;
+        font-size: 36px;
+        color: #222;
+    }
+
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 25px;
+    }
+
+    .product-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        text-align: center;
+        transition: 0.3s;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .product-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: contain;
+        margin-bottom: 15px;
+    }
+
+    .product-card h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .price {
+        font-size: 19px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 15px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .details-btn {
+        background: #eee;
+        color: #222;
+    }
+
+    .cart-btn {
+        background: #222;
+        color: white;
+    }
+
+    .cart-btn:hover {
+        background: #444;
+    }
+
+    @media (max-width: 600px) {
+        .products-page {
+            padding: 30px 5%;
+        }
+
+        .products-page h1 {
+            font-size: 28px;
+        }
+    }
+</style>
+
+
+<div class="products-page">
+
+    <h1>Our Products</h1>
+
+    <div class="product-grid">
+
+        {% for product in products %}
+
+        <div class="product-card">
+
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% else %}
+                <p>No Image Available</p>
+            {% endif %}
+
+            <h2>{{ product.name }}</h2>
+
+            <p class="price">
+                ₹{{ product.price }}
+            </p>
+
+            <div class="buttons">
+
+                <a
+                    href="{% url 'product_detail' product.id %}"
+                    class="btn details-btn">
+                    View Details
+                </a>
+
+                <a
+                    href="{% url 'add_to_cart' product.id %}"
+                    class="btn cart-btn">
+                    Add to Cart
+                </a>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <p>No products available.</p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
