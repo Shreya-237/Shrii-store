@@ -1,0 +1,90 @@
+[
+  {
+    "model": "store.product",
+    "pk": 1,
+    "fields": {
+      "name": "Black T-Shirt",
+      "description": "Premium cotton black round-neck  T-shirt",
+      "price": "999.00",
+      "image": "products/Tshirt_dalf0bB.jpeg",
+      "stock": 47
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 2,
+    "fields": {
+      "name": "White & Black Sneakers",
+      "description": "ASIAN Men ColourBlocked Sneakers",
+      "price": "2000.00",
+      "image": "products/sneakers_SXIUQMX.webp",
+      "stock": 99
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 3,
+    "fields": {
+      "name": "WristWatch",
+      "description": "ILOZ Fancy Bracelet Rose Gold Women Watches Ladies",
+      "price": "500.00",
+      "image": "products/watch_k5hKpt1.webp",
+      "stock": 100
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 4,
+    "fields": {
+      "name": "Mobile Cover",
+      "description": "Fashionury Designer Printed Back Cover for Apple iPhone 14",
+      "price": "350.00",
+      "image": "products/Mobile_Cover.jpg",
+      "stock": 78
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 5,
+    "fields": {
+      "name": "Cabinet",
+      "description": "Foldable Triangular Storage Cabinet with Wheels",
+      "price": "1899.00",
+      "image": "products/shopping_EVisF4P.webp",
+      "stock": 60
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 6,
+    "fields": {
+      "name": "Showpiece",
+      "description": "Handcrafted Metal Sailing Ship",
+      "price": "2279.00",
+      "image": "products/shopping_1.webp",
+      "stock": 50
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 7,
+    "fields": {
+      "name": "Statue",
+      "description": "Ekhasa Metal Show Pieces",
+      "price": "699.00",
+      "image": "products/shopping_2.webp",
+      "stock": 69
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 8,
+    "fields": {
+      "name": "Hand Painting",
+      "description": "Magnolia Hand Painted Marble Showpiece",
+      "price": "1599.00",
+      "image": "products/shopping_3.webp",
+      "stock": 50
+    }
+  }
+]
